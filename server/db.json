@@ -1,0 +1,32 @@
+{
+  "blogs": [
+    {
+      "title": "Blog Title 1",
+      "author": "John",
+      "id": 1
+    },
+    {
+      "title": "Blog Title 2",
+      "author": "Harry",
+      "id": 2
+    }
+  ],
+  "authors": [
+    {
+	  "id":1,
+      "name": "All"
+    },
+    {
+	  "id":2,
+      "name": "John"
+    },
+    {
+	  "id":3,
+      "name": "Harry"
+    },
+    {
+	  "id":4,
+      "name": "Jane"
+    }
+  ]
+}

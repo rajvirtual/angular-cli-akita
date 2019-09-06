@@ -1,0 +1,2 @@
+<app-blog-list (deleteBlogEvent)="deleteBlog($event)" [blogs]="blogs$ | async"></app-blog-list>
+<app-add-blog [filter]="filter" (addBlogEvent)="addBlog($event)"></app-add-blog>
