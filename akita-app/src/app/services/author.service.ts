@@ -19,15 +19,4 @@ export class AuthorService {
     }));
   }
 
-  add(author: Author) {
-    this.authorStore.add(author);
-  }
-
-  update(id, author: Partial<Author>) {
-    this.authorStore.update(id, author);
-  }
-
-  remove(id: ID) {
-    this.authorStore.remove(id);
-  }
 }
