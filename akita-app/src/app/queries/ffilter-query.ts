@@ -10,7 +10,7 @@ export class FilterQuery extends QueryEntity<FilterState, string> {
     }
 
     getFilter() {
-        return this.getValue().authorFilter.filter; // raw value
+        return this.getValue().authorFilter.filter;
     }
 
 }
