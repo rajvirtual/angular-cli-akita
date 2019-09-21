@@ -1,9 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { BlogService } from '../services/blog.service';
-import { Observable, combineLatest } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Blog } from '../models/blog';
 import { BlogQuery } from '../queries/blog-query';
 import { FilterQuery } from '../queries/ffilter-query';
+import { switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-blog-section',
@@ -24,13 +25,16 @@ export class BlogSectionComponent implements OnInit {
 
   loadBlogs() {
     this.blogService.get().subscribe();
-    this.blogs$ = combineLatest(
-      this.blogQuery.selectAll(),
-      this.filterQuery.select(state => state.authorFilter.filter),
-      (blogs: any, authorFilter: any) => {
-        return blogs ? blogs.filter(blog => authorFilter === 'All' ? blog : blog.author === authorFilter) : [];
-      }
-    );
+
+    this.blogs$ = this.filterQuery
+      .select(state => state.authorFilter.filter)
+      .pipe(
+        switchMap(
+          filterValue => filterValue !== 'All'
+            ? this.blogQuery.selectByAuthor(filterValue)
+            : this.blogQuery.selectAll()
+        )
+      );
   }
 
   addBlog(blog: Partial<Blog>) {
