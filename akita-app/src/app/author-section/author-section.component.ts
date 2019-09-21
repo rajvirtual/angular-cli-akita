@@ -24,6 +24,6 @@ export class AuthorSectionComponent implements OnInit {
 
   onSelectAuthor(author: string) {
     this.updateFilter.emit(author);
-    this.filterService.updateFilter(author === 'All' ? 'All' : author);
+    this.filterService.updateFilter(author);
   }
 }
